@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>श्री चक्र पूजा - महाअष्टमी निमंत्रण | भवसार परिवार</title>
+    <title>श्री चक्र पूजन व हळदी कुंकू - सस्नेह निमंत्रण | भावसार परिवार</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cinzel:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -32,10 +32,10 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* Mobile Frame Simulator */
+        /* Mobile Frame Container */
         .mobile-container {
             width: 100%;
             max-width: 420px;
@@ -43,7 +43,7 @@
             max-height: 880px;
             background: var(--bg-dark);
             position: relative;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-x: hidden;
             box-shadow: 0 0 50px rgba(0,0,0,0.95);
             border: 4px solid var(--gold-border);
@@ -56,7 +56,10 @@
             }
         }
 
-        /* Custom Scrollbar */
+        .mobile-container.opened {
+            overflow-y: auto;
+        }
+
         .mobile-container::-webkit-scrollbar {
             width: 4px;
         }
@@ -68,7 +71,7 @@
             border-radius: 4px;
         }
 
-        /* Gate Opening Overlay */
+        /* Gate Opening Overlay (First Page) */
         #gate-overlay {
             position: absolute;
             top: 0;
@@ -79,33 +82,84 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             text-align: center;
-            padding: 24px;
+            padding: 25px 15px;
             transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow-y: auto;
         }
 
         #gate-overlay.hidden {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
+        }
+
+        .om-symbol {
+            font-size: 36px;
+            color: var(--gold-primary);
+            text-shadow: 0 0 15px rgba(243,198,83,0.6);
         }
 
         .gate-title {
             font-family: 'Yatra One', cursive;
-            font-size: 26px;
+            font-size: 18px;
             color: var(--gold-light);
-            margin-bottom: 18px;
-            line-height: 1.4;
-            text-shadow: 0 2px 15px rgba(243,198,83,0.5);
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* First Page Deity Grid */
+        .welcome-deity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            width: 100%;
+            margin: 6px 0;
+        }
+
+        .welcome-deity-box {
+            background: #20080a;
+            border: 1.5px solid var(--gold-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+        }
+
+        .welcome-deity-box img {
+            width: 100%;
+            height: 105px;
+            object-fit: cover;
+        }
+
+        .welcome-deity-name {
+            font-family: 'Yatra One', cursive;
+            font-size: 11px;
+            color: var(--gold-light);
+            padding: 5px 2px;
+            background: rgba(13, 3, 4, 0.9);
+        }
+
+        .welcome-quote {
+            font-size: 12px;
+            font-weight: 500;
+            color: #f3e5ab;
+            line-height: 1.5;
+            font-style: italic;
+            background: rgba(25, 8, 10, 0.6);
+            border: 1px solid rgba(243,198,83,0.3);
+            padding: 8px;
+            border-radius: 10px;
+            width: 100%;
         }
 
         .open-btn {
             background: linear-gradient(135deg, #f3c653 0%, #b8860b 100%);
             color: #0d0304;
             border: none;
-            padding: 14px 36px;
-            font-size: 17px;
+            padding: 12px 32px;
+            font-size: 16px;
             font-weight: 700;
             border-radius: 35px;
             cursor: pointer;
@@ -113,65 +167,70 @@
             font-family: 'Cinzel', serif;
             letter-spacing: 1.5px;
             transition: transform 0.2s;
+            margin-top: 4px;
         }
 
         .open-btn:active {
             transform: scale(0.95);
         }
 
-        /* Section Styling */
+        /* Section Layout for Main Page */
         .section {
-            padding: 28px 18px;
+            padding: 24px 16px;
             text-align: center;
             position: relative;
         }
 
         .header-section {
             background: radial-gradient(circle at center, #350f14 0%, var(--bg-dark) 100%);
-            border-bottom: 2px solid rgba(243,198,83,3);
-            padding-top: 35px;
-        }
-
-        .om-symbol {
-            font-size: 38px;
-            color: var(--gold-primary);
-            margin-bottom: 4px;
-            text-shadow: 0 0 12px rgba(243,198,83,0.4);
+            border-bottom: 2px solid rgba(243,198,83,0.3);
+            padding-top: 30px;
         }
 
         .main-heading {
             font-family: 'Yatra One', cursive;
             font-size: 24px;
             color: var(--gold-light);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
         .sub-heading {
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 18px;
+            font-family: 'Yatra One', cursive;
+            font-size: 14px;
+            color: var(--gold-primary);
+            margin-bottom: 8px;
+            line-height: 1.7;
         }
 
-        .hero-img-box {
-            width: 100%;
-            height: 230px;
-            border-radius: 16px;
-            border: 2px solid var(--gold-border);
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+        /* Deity Images Grid (Main Page) */
+        .deity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .deity-box {
             background: #20080a;
+            border: 2px solid var(--gold-border);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.7);
         }
 
-        .hero-img-box img {
+        .deity-box img {
             width: 100%;
-            height: 100%;
+            height: 140px;
             object-fit: cover;
+        }
+
+        .deity-name {
+            font-family: 'Yatra One', cursive;
+            font-size: 12px;
+            color: var(--gold-light);
+            padding: 8px 4px;
+            background: rgba(13, 3, 4, 0.85);
         }
 
         /* Luxury Cards */
@@ -179,56 +238,48 @@
             background: var(--bg-card);
             border: 1.5px solid var(--gold-border);
             border-radius: 16px;
-            padding: 22px 18px;
-            margin: 12px 0;
+            padding: 20px 16px;
+            margin: 10px 0;
             box-shadow: 0 6px 20px rgba(0,0,0,0.6);
             position: relative;
         }
 
         .section-title {
             font-family: 'Yatra One', cursive;
-            font-size: 18px;
+            font-size: 17px;
             color: var(--gold-light);
-            margin-bottom: 16px;
-            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
-        .family-name {
-            font-family: 'Yatra One', cursive;
-            font-size: 22px;
-            color: var(--gold-primary);
-            margin-bottom: 6px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
-        }
-
         .member-list {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 500;
             color: var(--text-main);
-            line-height: 1.7;
-            margin-top: 10px;
+            line-height: 1.9;
+            margin-top: 6px;
         }
 
-        /* Countdown Grid */
+        /* Real-Time Countdown Grid */
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-top: 14px;
+            gap: 6px;
+            margin-top: 12px;
         }
 
         .time-box {
             background: rgba(243, 198, 83, 0.08);
             border: 1.5px solid var(--gold-border);
             border-radius: 10px;
-            padding: 10px 6px;
+            padding: 8px 4px;
             text-align: center;
         }
 
         .time-val {
             font-family: 'Cinzel', serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--gold-light);
         }
@@ -238,15 +289,15 @@
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
         /* Timeline Schedule */
         .timeline-wrapper {
             position: relative;
-            margin: 18px 0;
-            padding-left: 10px;
-            padding-right: 10px;
+            margin: 15px 0;
+            padding-left: 5px;
+            padding-right: 5px;
         }
 
         .timeline-wrapper::before {
@@ -255,7 +306,7 @@
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 2.5px;
+            width: 2px;
             background: linear-gradient(to bottom, var(--gold-border), var(--gold-primary), var(--gold-border));
             transform: translateX(-50%);
             z-index: 1;
@@ -265,7 +316,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             position: relative;
             z-index: 2;
         }
@@ -275,73 +326,51 @@
             background: var(--bg-card);
             border: 1.5px solid rgba(243,198,83,0.4);
             border-radius: 10px;
-            padding: 12px 10px;
+            padding: 10px 8px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .timeline-box-item .ev-name {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .timeline-box-item .ev-time {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--gold-primary);
             font-family: 'Cinzel', serif;
         }
 
         .timeline-node-icon {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             background: var(--bg-dark);
             border: 2px solid var(--gold-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 11px;
             z-index: 3;
             box-shadow: 0 0 10px rgba(243,198,83,0.6);
         }
 
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .gallery-item {
-            height: 125px;
-            border-radius: 10px;
-            border: 1.5px solid var(--gold-border);
-            overflow: hidden;
-            background: #25090c;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         /* Venue & Contact Card */
         .venue-address {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 500;
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
         }
 
         .contact-box {
-            margin-top: 12px;
-            font-size: 14px;
+            margin-top: 10px;
+            font-size: 13.5px;
             font-weight: 600;
             color: var(--gold-light);
         }
@@ -369,7 +398,7 @@
 
         /* Footer Branding */
         .footer-note {
-            padding: 18px;
+            padding: 16px;
             text-align: center;
             font-size: 11px;
             font-weight: 600;
@@ -385,8 +414,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             background: var(--bg-card);
             border: 2px solid var(--gold-primary);
             border-radius: 50%;
@@ -397,21 +426,40 @@
             z-index: 900;
             box-shadow: 0 5px 20px rgba(0,0,0,0.8);
             color: var(--gold-primary);
-            font-size: 18px;
+            font-size: 17px;
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="mobile-container">
+    <div class="mobile-container" id="main-container">
 
-        <!-- Gate Opening Overlay -->
+        <!-- Gate Opening Overlay (First Page) -->
         <div id="gate-overlay">
             <div class="om-symbol">🕉️</div>
-            <div class="gate-title">श्री महाअष्टमी<br>श्री चक्र पूजा आमंत्रण</div>
-            <p style="font-size: 14px; font-weight: 500; color: #f3e5ab; margin-bottom: 25px; max-width: 280px; line-height: 1.6;">
-                सर्वमंगल मांगल्ये शिवे सर्वार्थ साधिके शरण्ये त्र्यंबके गौरी नारायणी नमोस्तुते।
-            </p>
+            <div class="gate-title">
+                ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
+                ॥ श्री हिंगलाज माता प्रसन्न ॥<br>
+                <span style="font-size: 16px; color: var(--gold-primary);">चक्र पूजन व हळदी कुंकू निमंत्रण</span>
+            </div>
+
+            <!-- Goddess Pictures Grid on First Page -->
+            <div class="welcome-deity-grid">
+                <div class="welcome-deity-box">
+                    <img src="https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80" alt="Saptashrungi Mata">
+                    <div class="welcome-deity-name">श्री सप्तशृंगी माता</div>
+                </div>
+                <div class="welcome-deity-box">
+                    <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80" alt="Hinglaj Mata">
+                    <div class="welcome-deity-name">श्री हिंगलाज माता</div>
+                </div>
+            </div>
+
+            <div class="welcome-quote">
+                "या देवी सर्वभूतेषु मातृरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥"
+            </div>
+
             <button class="open-btn" onclick="openInvitation()">निमंत्रण उघडा ✉️</button>
         </div>
 
@@ -420,26 +468,39 @@
             🔊
         </div>
 
-        <!-- Header Section -->
+        <!-- Header Section (Main Page) -->
         <div class="section header-section">
-            <div class="om-symbol">卐</div>
-            <div class="sub-heading">॥ शरदीय नवरात्रोत्सव - महाअष्टमी ॥</div>
-            <div class="main-heading">श्री चक्र नववरण पूजा</div>
-            <p style="font-size: 13px; font-weight: 500; color: var(--gold-light); margin-top: 6px;">आई महागौरीच्या चरणी समर्पित पावन अनुष्ठान</p>
+            <div class="sub-heading">
+                ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
+                ॥ श्री हिंगलाज माता प्रसन्न ॥
+            </div>
+            <div class="main-heading">सस्नेह निमंत्रण</div>
+            <p style="font-size: 13.5px; font-weight: 600; color: var(--gold-light);">चक्र पूजन व हळदी कुंकू समारंभ</p>
 
-            <div style="margin-top: 18px;" class="hero-img-box">
-                <img src="https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=600&q=80" alt="Devi Puja">
+            <!-- Goddess Pictures Grid -->
+            <div class="deity-grid">
+                <div class="deity-box">
+                    <img src="https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80" alt="Saptashrungi Mata">
+                    <div class="deity-name">श्री सप्तशृंगी माता</div>
+                </div>
+                <div class="deity-box">
+                    <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80" alt="Hinglaj Mata">
+                    <div class="deity-name">श्री हिंगलाज माता</div>
+                </div>
             </div>
         </div>
 
-        <!-- Countdown Section -->
-        <div class="section" style="padding-bottom: 12px;">
+        <!-- Real-Time Countdown Section -->
+        <div class="section" style="padding-bottom: 10px;">
             <div class="gold-card" style="margin: 0;">
-                <div style="font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--gold-primary); letter-spacing: 1.2px; margin-bottom: 8px;">
-                    📅 पावन तारीख व काउंटडाउन
+                <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 700; color: var(--gold-primary); letter-spacing: 1px; margin-bottom: 6px;">
+                    📅 पावन तारीख व वेळेपर्यंत बाकी अवधी
                 </div>
-                <div style="font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 12px;">
-                    महाअष्टमी — २० ऑक्टोबर २०२६
+                <div style="font-size: 14.5px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                    शुक्रवार दि. ११/१०/२०२४ रोजी
+                </div>
+                <div style="font-size: 13px; color: var(--gold-light); margin-bottom: 10px;">
+                    वेळ : सायं. ७:३० वाजता
                 </div>
                 
                 <div class="countdown-grid">
@@ -464,18 +525,21 @@
         </div>
 
         <!-- Host / Family Section -->
-        <div class="section" style="padding-bottom: 12px;">
+        <div class="section" style="padding-bottom: 10px;">
             <div class="gold-card" style="margin: 0;">
-                <div style="font-size: 12px; font-weight: 700; color: var(--gold-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">॥ आमचे परिवार निमंत्रक ॥</div>
-                <div class="family-name">भवसार परिवार</div>
+                <div style="font-size: 11.5px; font-weight: 700; color: var(--gold-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;">॥ निमंत्रक ॥</div>
                 <div class="member-list">
-                    <b style="color: var(--gold-light);">निमंत्रक:</b><br>
-                    सुरेशचंद्र भावसार , सतीशचंद्र भावसार<br>
-                    जिज्ञासा भावसार , इशिता भावसार<br>
-                    दुर्वेश भावसार
+                    श्री. सुरेशचंद्र द. भावसार<br>
+                    श्री. सतीशचंद्र स. भावसार<br>
+                    सौ. जिज्ञासा स. भावसार<br>
+                    कु. इशिता स. भावसार<br>
+                    चि. दुर्वेश स. भावसार
                 </div>
-                <p style="font-size: 13.5px; font-weight: 500; color: var(--text-muted); line-height: 1.6; margin-top: 12px;">
-                    आपल्या उपस्थितीने आमच्या घरी होणाऱ्या आई भगवतीच्या श्री चक्र पूजेचा आनंद द्विगुणित होईल. सपरिवार आग्रहाचे निमंत्रण!
+                <p style="font-size: 12.5px; font-weight: 500; color: var(--gold-light); line-height: 1.6; margin-top: 12px; font-style: italic;">
+                    "या देवी सर्वभूतेषु मातृरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥"
+                </p>
+                <p style="font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.6; margin-top: 8px;">
+                    या मंगलमय प्रसंगी आपण कुटुंबपरिवारसह उपस्थित राहून आमच्या आनंदात सहभागी व्हावे, ही नम्र विनंती.
                 </p>
             </div>
         </div>
@@ -487,8 +551,8 @@
             <div class="timeline-wrapper">
                 <div class="timeline-row">
                     <div class="timeline-box-item" style="text-align: right;">
-                        <div class="ev-name">गणपती स्थापना</div>
-                        <div class="ev-time">09:00 AM</div>
+                        <div class="ev-name">आगम व स्वागत</div>
+                        <div class="ev-time">07:00 PM</div>
                     </div>
                     <div class="timeline-node-icon">🪔</div>
                     <div style="width: 43%;"></div>
@@ -498,49 +562,37 @@
                     <div style="width: 43%;"></div>
                     <div class="timeline-node-icon">🌺</div>
                     <div class="timeline-box-item" style="text-align: left;">
-                        <div class="ev-name">श्री चक्र पूजा</div>
-                        <div class="ev-time">10:30 AM</div>
+                        <div class="ev-name">चक्र पूजन व हळदी कुंकू</div>
+                        <div class="ev-time">07:30 PM</div>
                     </div>
                 </div>
 
                 <div class="timeline-row">
                     <div class="timeline-box-item" style="text-align: right;">
-                        <div class="ev-name">कुमारी पूजन व हवन</div>
-                        <div class="ev-time">12:00 PM</div>
-                    </div>
-                    <div class="timeline-node-icon">🪔</div>
-                    <div style="width: 43%;"></div>
-                </div>
-
-                <div class="timeline-row">
-                    <div style="width: 43%;"></div>
-                    <div class="timeline-node-icon">🔔</div>
-                    <div class="timeline-box-item" style="text-align: left;">
                         <div class="ev-name">महा आरती</div>
-                        <div class="ev-time">01:00 PM</div>
+                        <div class="ev-time">09:00 PM</div>
                     </div>
+                    <div class="timeline-node-icon">🔔</div>
+                    <div style="width: 43%;"></div>
                 </div>
 
                 <div class="timeline-row" style="margin-bottom: 0;">
-                    <div class="timeline-box-item" style="text-align: right;">
-                        <div class="ev-name">महाप्रसाद (भंडारा)</div>
-                        <div class="ev-time">01:30 PM</div>
-                    </div>
-                    <div class="timeline-node-icon">🍲</div>
                     <div style="width: 43%;"></div>
+                    <div class="timeline-node-icon">🍲</div>
+                    <div class="timeline-box-item" style="text-align: left;">
+                        <div class="ev-name">महाप्रसाद</div>
+                        <div class="ev-time">09:30 PM</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-       
         <!-- Venue & Contact Section -->
         <div class="section" style="padding-top: 0;">
             <div class="gold-card" style="margin: 0;">
-                <div class="section-title" style="margin-bottom: 8px;">📍 कार्यक्रम स्थळ व संपर्क</div>
+                <div class="section-title" style="margin-bottom: 8px;">📍 निवास स्थान व संपर्क</div>
                 <div class="venue-address">
-                    अवधूत पार्क, फ्लॅट नं. ७, फ्लोर नं. ४,<br>
-                    विकास कॉलनी, पार्कसाइड रेजिडेंसीच्या समोर,<br>
-                    इंदिरा नगर Annex, नाशिक - ४२२००९
+                    अवधूत पार्क फ्लॅट नं-७, विकास कॉलनी, पार्कसाइड रेसिडेन्सी समोर, इंदिरा नगर, नाशिक - ०९.
                 </div>
                 
                 <div class="contact-box">
@@ -549,14 +601,14 @@
                 </div>
 
                 <!-- Google Maps Link -->
-                <a href="https://maps.app.goo.gl/CyoCV8AiLBRUmLeD7" target="_blank" class="map-btn">गुगल मॅपवर पहा 🗺️</a>
+                <a href="https://share.google/QFqc2sAqhDUC5RLZA" target="_blank" class="map-btn">गुगल मॅपवर पहा 🗺️</a>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer-note">
-            निवेदक : समस्त भवसार परिवार<br>
-            <span style="font-size: 9px; color: var(--gold-border); margin-top: 4px; display:inline-block;">Designed by Durvesh Bhavsar | TechArtMedia</span>
+            समस्त भावसार परिवार<br>
+            <span style="font-size: 9px; color: var(--gold-border); margin-top: 4px; display:inline-block;">Designed with Devotion</span>
         </div>
 
     </div>
@@ -569,7 +621,12 @@
     <script>
         function openInvitation() {
             const overlay = document.getElementById('gate-overlay');
+            const container = document.getElementById('main-container');
+            const audioBtn = document.getElementById('audio-btn');
+            
             overlay.classList.add('hidden');
+            container.classList.add('opened');
+            audioBtn.style.display = 'flex';
             
             const audio = document.getElementById('bg-audio');
             audio.play().catch(e => console.log("Audio autoplay restricted:", e));
@@ -584,8 +641,8 @@
             btn.innerHTML = isMuted ? '🔇' : '🔊';
         }
 
-        // Live Countdown Timer Target (Oct 20, 2026)
-        const targetDate = new Date("October 20, 2026 09:00:00").getTime();
+        // Real-time Countdown Timer Logic
+        const targetDate = new Date("October 11, 2024 19:30:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
