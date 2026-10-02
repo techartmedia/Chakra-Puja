@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>श्री चक्र पूजन व हळदी कुंकू - सस्नेह निमंत्रण | भावसार परिवार</title>
-    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- श्री-लिपी सदृश पारंपरिक व आकर्षक मराठी लुकसाठी युिकोड फॉन्ट -->
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Yatra+One&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #0c0809;
@@ -28,14 +29,13 @@
             height: 100vh;
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Tiro Devanagari Marathi', serif;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Mobile Screen Resolution Container */
         .mobile-container {
             width: 100vw;
             height: 100vh;
@@ -56,15 +56,11 @@
         .mobile-container::-webkit-scrollbar {
             width: 4px;
         }
-        .mobile-container::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
         .mobile-container::-webkit-scrollbar-thumb {
             background: var(--gold-border);
             border-radius: 4px;
         }
 
-        /* Gate Opening Overlay (First Page) */
         #gate-overlay {
             position: absolute;
             top: 0;
@@ -90,19 +86,18 @@
         }
 
         .om-symbol {
-            font-size: 28px;
+            font-size: 32px;
             color: var(--gold-primary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .gate-title {
             font-family: 'Yatra One', cursive;
-            font-size: 14px;
+            font-size: 14.5px;
             color: var(--gold-light);
             line-height: 1.7;
         }
 
-        /* Deity Grid for Welcome & Main Page */
         .deity-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -143,7 +138,7 @@
             padding: 10px 14px;
             border-radius: 8px;
             width: 100%;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .open-btn {
@@ -156,16 +151,10 @@
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(212,175,55,0.4);
-            font-family: 'Cinzel', serif;
+            font-family: 'Yatra One', cursive;
             letter-spacing: 1px;
-            transition: transform 0.2s;
         }
 
-        .open-btn:active {
-            transform: scale(0.96);
-        }
-
-        /* Section Layout */
         .section {
             padding: 20px 16px;
             text-align: center;
@@ -187,13 +176,12 @@
 
         .sub-heading {
             font-family: 'Yatra One', cursive;
-            font-size: 13.5px;
+            font-size: 14px;
             color: var(--gold-primary);
             line-height: 1.7;
             margin-bottom: 8px;
         }
 
-        /* Professional Cards */
         .gold-card {
             background: var(--bg-card);
             border: 1px solid var(--gold-border);
@@ -208,18 +196,16 @@
             font-size: 18px;
             color: var(--gold-light);
             margin-bottom: 12px;
-            letter-spacing: 0.5px;
         }
 
         .member-list {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 600;
             color: var(--text-main);
             line-height: 1.8;
             margin-top: 6px;
         }
 
-        /* Countdown Grid */
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -243,19 +229,16 @@
         }
 
         .time-lbl {
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 600;
             color: var(--text-muted);
-            text-transform: uppercase;
             margin-top: 2px;
         }
 
-        /* Timeline Schedule */
         .timeline-wrapper {
             position: relative;
             margin: 12px 0;
-            padding-left: 4px;
-            padding-right: 4px;
+            padding: 0 4px;
         }
 
         .timeline-wrapper::before {
@@ -290,7 +273,7 @@
         }
 
         .timeline-box-item .ev-name {
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 600;
             color: var(--text-main);
             margin-bottom: 2px;
@@ -317,10 +300,8 @@
             box-shadow: 0 0 8px rgba(212,175,55,0.5);
         }
 
-        /* Venue & Contact */
         .venue-address {
-            font-size: 13.5px;
-            font-weight: 400;
+            font-size: 14px;
             color: var(--text-muted);
             line-height: 1.6;
             margin-bottom: 10px;
@@ -328,8 +309,7 @@
 
         .contact-box {
             margin-top: 10px;
-            font-size: 13.5px;
-            font-weight: 500;
+            font-size: 14px;
             color: var(--gold-light);
             line-height: 1.5;
         }
@@ -348,27 +328,21 @@
             border-radius: 20px;
             font-weight: 600;
             text-decoration: none;
-            font-size: 13px;
-            font-family: 'Cinzel', serif;
+            font-size: 13.5px;
+            font-family: 'Yatra One', cursive;
             box-shadow: 0 4px 12px rgba(212,175,55,0.3);
             margin-top: 12px;
-            letter-spacing: 0.5px;
         }
 
-        /* Footer */
         .footer-note {
             padding: 16px;
             text-align: center;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 12.5px;
             color: var(--text-muted);
             border-top: 1px solid rgba(212,175,55,0.15);
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
         }
 
-        /* Floating Audio Control */
         .audio-control {
             position: fixed;
             bottom: 16px;
@@ -394,27 +368,25 @@
 
     <div class="mobile-container" id="main-container">
 
-        <!-- Gate Opening Overlay (First Page) -->
+        <!-- Gate Opening Overlay -->
         <div id="gate-overlay">
             <div>
-                <div class="om-symbol">🕉️</div>
+                <div class="om-symbol">🕉</div>
                 <div class="gate-title">
                     || श्री सप्तशृंगी माता प्रसन्न ||<br>
                     || श्री हिंगलाज माता प्रसन्न ||<br>
-                    <span style="font-size: 13px; color: var(--gold-primary); display:inline-block; margin-top:4px;">चक्र पूजन व हळदी कुंकू निमंत्रण</span>
+                    <span style="font-size: 13.5px; color: var(--gold-primary); display:inline-block; margin-top:4px;">चक्र पूजन व हळदी कुंकू निमंत्रण</span>
                 </div>
             </div>
 
-            <!-- Welcome Goddess Grid (Using GitHub Image URLs placeholders) -->
+            <!-- GitHub Raw Image Links -->
             <div class="deity-grid">
                 <div class="deity-box">
-                    <!-- येथे तुमचे GitHub वर असलेले सप्तशृंगी देवीचे नाव टाका (उदा. images/saptashrungi.jpg) -->
-                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images.jpg" alt="श्री सप्तशृंगी माता" onerror="this.src='https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80'">
+                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images.jpg" alt="श्री सप्तशृंगी माता">
                     <div class="deity-name">श्री सप्तशृंगी माता</div>
                 </div>
                 <div class="deity-box">
-                    <!-- येथे तुमचे GitHub वर असलेले हिंगलाज माता देवीचे नाव टाका (उदा. images/hinglaj.jpg) -->
-                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images%20(1).jpg" alt="श्री हिंगलाज माता" onerror="this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80'">
+                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images%20(1).jpg" alt="श्री हिंगलाज माता">
                     <div class="deity-name">श्री हिंगलाज माता</div>
                 </div>
             </div>
@@ -426,43 +398,41 @@
             <button class="open-btn" onclick="openInvitation()">निमंत्रण उघडा ✉️</button>
         </div>
 
-        <!-- Floating Audio Toggle -->
         <div class="audio-control" id="audio-btn" onclick="toggleAudio()" title="Mute/Unmute">
             🔊
         </div>
 
-        <!-- Header Section (Main Page) -->
+        <!-- Header Section -->
         <div class="section header-section">
             <div class="sub-heading">
                 || श्री सप्तशृंगी माता प्रसन्न ||<br>
                 || श्री हिंगलाज माता प्रसन्न ||
             </div>
             <div class="main-heading">सस्नेह निमंत्रण</div>
-            <p style="font-size: 13.5px; font-weight: 500; color: var(--gold-light); margin-bottom: 12px;">चक्र पूजन व हळदी कुंकू समारंभ</p>
+            <p style="font-size: 14px; font-weight: 600; color: var(--gold-light); margin-bottom: 12px;">चक्र पूजन व हळदी कुंकू समारंभ</p>
 
-            <!-- Main Page Deity Grid -->
             <div class="deity-grid">
                 <div class="deity-box">
-                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images.jpg" alt="श्री सप्तशृंगी माता" onerror="this.src='https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80'">
+                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images.jpg" alt="श्री सप्तशृंगी माता">
                     <div class="deity-name">श्री सप्तशृंगी माता</div>
                 </div>
                 <div class="deity-box">
-                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images%20(1).jpg" alt="श्री हिंगलाज माता" onerror="this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80'">
+                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images%20(1).jpg" alt="श्री हिंगलाज माता">
                     <div class="deity-name">श्री हिंगलाज माता</div>
                 </div>
             </div>
         </div>
 
-        <!-- Real-Time Countdown Section -->
+        <!-- Countdown Section -->
         <div class="section" style="padding-bottom: 8px;">
             <div class="gold-card" style="margin: 0;">
-                <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 600; color: var(--gold-primary); letter-spacing: 0.5px; margin-bottom: 4px;">
+                <div style="font-family: 'Yatra One', cursive; font-size: 13px; color: var(--gold-primary); margin-bottom: 4px;">
                     📅 प्रत्यक्ष चालू वेळ व उर्वरित अवधी
                 </div>
-                <div style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 2px;">
+                <div style="font-size: 14.5px; font-weight: 600; color: var(--text-main); margin-bottom: 2px;">
                     शुक्रवार दि. ११/१०/२०२४ रोजी
                 </div>
-                <div style="font-size: 13px; color: var(--gold-light); margin-bottom: 10px;">
+                <div style="font-size: 13.5px; color: var(--gold-light); margin-bottom: 10px;">
                     वेळ : सायं. ७:३० वाजता
                 </div>
                 
@@ -487,10 +457,10 @@
             </div>
         </div>
 
-        <!-- Host / Family Section -->
+        <!-- Host Section -->
         <div class="section" style="padding-bottom: 8px;">
             <div class="gold-card" style="margin: 0;">
-                <div style="font-size: 12.5px; font-weight: 600; color: var(--gold-primary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">॥ निमंत्रक ॥</div>
+                <div style="font-family: 'Yatra One', cursive; font-size: 13px; color: var(--gold-primary); text-transform: uppercase; margin-bottom: 6px;">॥ निमंत्रक ॥</div>
                 <div class="member-list">
                     सुरेशचंद्र द. भावसार<br>
                     सतीशचंद्र स. भावसार<br>
@@ -498,16 +468,16 @@
                     इशिता स. भावसार<br>
                     दुर्वेश स. भावसार
                 </div>
-                <p style="font-size: 12.5px; font-weight: 400; color: var(--gold-light); line-height: 1.5; margin-top: 10px; font-style: italic;">
+                <p style="font-size: 13px; color: var(--gold-light); margin-top: 10px; font-style: italic;">
                     "या देवी सर्वभूतेषु मातृरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥"
                 </p>
-                <p style="font-size: 13px; font-weight: 400; color: var(--text-muted); line-height: 1.5; margin-top: 6px;">
+                <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 6px;">
                     या मंगलमय प्रसंगी आपण कुटुंबपरिवारसह उपस्थित राहून आमच्या आनंदात सहभागी व्हावे, ही नम्र विनंती.
                 </p>
             </div>
         </div>
 
-        <!-- Timeline Schedule -->
+        <!-- Timeline -->
         <div class="section">
             <div class="section-title">॥ उत्सवाचा मंगल प्रवास ॥</div>
             
@@ -550,7 +520,7 @@
             </div>
         </div>
 
-        <!-- Venue & Contact Section -->
+        <!-- Venue -->
         <div class="section" style="padding-top: 0;">
             <div class="gold-card" style="margin: 0;">
                 <div class="section-title" style="margin-bottom: 6px;">📍 निवास स्थान व संपर्क</div>
@@ -563,19 +533,16 @@
                     <a href="tel:9422955824">9422955824</a> / <a href="tel:8087084597">8087084597</a>
                 </div>
 
-                <!-- Google Maps Link -->
                 <a href="https://share.google/QFqc2sAqhDUC5RLZA" target="_blank" class="map-btn">गुगल मॅपवर पहा 🗺️</a>
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer-note">
             Designed by Durvesh Bhavsar TechArtMedia
         </div>
 
     </div>
 
-    <!-- Background Audio Loop -->
     <audio id="bg-audio" loop>
         <source src="https://actions.google.com/sounds/v1/ambiences/indian_market.ogg" type="audio/ogg">
     </audio>
@@ -603,7 +570,6 @@
             btn.innerHTML = isMuted ? '🔇' : '🔊';
         }
 
-        // Real-Time Countdown Timer Logic
         const targetDate = new Date("October 11, 2024 19:30:00").getTime();
 
         function updateCountdown() {
