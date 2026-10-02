@@ -2,19 +2,18 @@
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>श्री चक्र पूजन व हळदी कुंकू - सस्नेह निमंत्रण | भावसार परिवार</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cinzel:wght@500;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0d0304;
-            --bg-card: #19080a;
-            --gold-primary: #f3c653;
-            --gold-light: #fff2cc;
-            --gold-border: #a67c37;
-            --text-main: #ffffff;
-            --text-muted: #e2d2c2;
+            --bg-dark: #0c0809;
+            --bg-card: #160d0e;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-border: #8c6d36;
+            --text-main: #f5f5f5;
+            --text-muted: #dcd6d0;
         }
 
         * {
@@ -24,36 +23,30 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        body {
+        html, body {
+            width: 100vw;
+            height: 100vh;
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Poppins', sans-serif;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
         }
 
-        /* Mobile Frame Container */
+        /* Mobile Screen Resolution Container */
         .mobile-container {
-            width: 100%;
-            max-width: 420px;
+            width: 100vw;
             height: 100vh;
-            max-height: 880px;
+            max-width: 450px;
+            max-height: 100vh;
             background: var(--bg-dark);
             position: relative;
             overflow-y: hidden;
             overflow-x: hidden;
-            box-shadow: 0 0 50px rgba(0,0,0,0.95);
-            border: 4px solid var(--gold-border);
-        }
-
-        @media (min-width: 421px) {
-            .mobile-container {
-                height: 860px;
-                border-radius: 36px;
-            }
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+            border: 1px solid var(--gold-border);
         }
 
         .mobile-container.opened {
@@ -78,15 +71,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #4a0d13 0%, #0d0304 100%);
+            background: radial-gradient(circle, #380b10 0%, #0c0809 100%);
             z-index: 1000;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             text-align: center;
-            padding: 25px 15px;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            padding: 24px 20px;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
             overflow-y: auto;
         }
 
@@ -97,182 +90,147 @@
         }
 
         .om-symbol {
-            font-size: 36px;
+            font-size: 28px;
             color: var(--gold-primary);
-            text-shadow: 0 0 15px rgba(243,198,83,0.6);
+            margin-bottom: 4px;
         }
 
         .gate-title {
             font-family: 'Yatra One', cursive;
-            font-size: 18px;
+            font-size: 14px;
             color: var(--gold-light);
-            line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            line-height: 1.7;
         }
 
-        /* First Page Deity Grid */
-        .welcome-deity-grid {
+        /* Deity Grid for Welcome & Main Page */
+        .deity-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            gap: 12px;
             width: 100%;
-            margin: 6px 0;
+            margin: 10px 0;
         }
 
-        .welcome-deity-box {
-            background: #20080a;
-            border: 1.5px solid var(--gold-border);
-            border-radius: 12px;
+        .deity-box {
+            background: var(--bg-card);
+            border: 1px solid var(--gold-border);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
 
-        .welcome-deity-box img {
+        .deity-box img {
             width: 100%;
-            height: 105px;
+            height: 160px;
             object-fit: cover;
+            object-position: center top;
         }
 
-        .welcome-deity-name {
+        .deity-name {
             font-family: 'Yatra One', cursive;
-            font-size: 11px;
+            font-size: 13px;
             color: var(--gold-light);
-            padding: 5px 2px;
-            background: rgba(13, 3, 4, 0.9);
+            padding: 6px 4px;
+            background: rgba(12, 8, 9, 0.95);
         }
 
         .welcome-quote {
-            font-size: 12px;
-            font-weight: 500;
-            color: #f3e5ab;
-            line-height: 1.5;
+            font-size: 13px;
+            color: var(--text-muted);
             font-style: italic;
-            background: rgba(25, 8, 10, 0.6);
-            border: 1px solid rgba(243,198,83,0.3);
-            padding: 8px;
-            border-radius: 10px;
+            background: rgba(22, 13, 14, 0.8);
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 10px 14px;
+            border-radius: 8px;
             width: 100%;
+            line-height: 1.5;
         }
 
         .open-btn {
-            background: linear-gradient(135deg, #f3c653 0%, #b8860b 100%);
-            color: #0d0304;
+            background: linear-gradient(135deg, #d4af37 0%, #aa8228 100%);
+            color: #0c0809;
             border: none;
-            padding: 12px 32px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 35px;
+            padding: 12px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 25px;
             cursor: pointer;
-            box-shadow: 0 6px 25px rgba(243,198,83,0.5);
+            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
             font-family: 'Cinzel', serif;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             transition: transform 0.2s;
-            margin-top: 4px;
         }
 
         .open-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
-        /* Section Layout for Main Page */
+        /* Section Layout */
         .section {
-            padding: 24px 16px;
+            padding: 20px 16px;
             text-align: center;
             position: relative;
         }
 
         .header-section {
-            background: radial-gradient(circle at center, #350f14 0%, var(--bg-dark) 100%);
-            border-bottom: 2px solid rgba(243,198,83,0.3);
-            padding-top: 30px;
+            background: radial-gradient(circle at center, #2c0a0e 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid rgba(212,175,55,0.25);
+            padding-top: 24px;
         }
 
         .main-heading {
             font-family: 'Yatra One', cursive;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--gold-light);
-            margin-bottom: 6px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            margin-bottom: 4px;
         }
 
         .sub-heading {
             font-family: 'Yatra One', cursive;
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--gold-primary);
-            margin-bottom: 8px;
             line-height: 1.7;
+            margin-bottom: 8px;
         }
 
-        /* Deity Images Grid (Main Page) */
-        .deity-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .deity-box {
-            background: #20080a;
-            border: 2px solid var(--gold-border);
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.7);
-        }
-
-        .deity-box img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-        }
-
-        .deity-name {
-            font-family: 'Yatra One', cursive;
-            font-size: 12px;
-            color: var(--gold-light);
-            padding: 8px 4px;
-            background: rgba(13, 3, 4, 0.85);
-        }
-
-        /* Luxury Cards */
+        /* Professional Cards */
         .gold-card {
             background: var(--bg-card);
-            border: 1.5px solid var(--gold-border);
-            border-radius: 16px;
-            padding: 20px 16px;
+            border: 1px solid var(--gold-border);
+            border-radius: 12px;
+            padding: 18px 16px;
             margin: 10px 0;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .section-title {
             font-family: 'Yatra One', cursive;
-            font-size: 17px;
+            font-size: 18px;
             color: var(--gold-light);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .member-list {
-            font-size: 13.5px;
+            font-size: 14px;
             font-weight: 500;
             color: var(--text-main);
-            line-height: 1.9;
+            line-height: 1.8;
             margin-top: 6px;
         }
 
-        /* Real-Time Countdown Grid */
+        /* Countdown Grid */
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-            margin-top: 12px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .time-box {
-            background: rgba(243, 198, 83, 0.08);
-            border: 1.5px solid var(--gold-border);
-            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.06);
+            border: 1px solid var(--gold-border);
+            border-radius: 8px;
             padding: 8px 4px;
             text-align: center;
         }
@@ -280,13 +238,13 @@
         .time-val {
             font-family: 'Cinzel', serif;
             font-size: 18px;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--gold-light);
         }
 
         .time-lbl {
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--text-muted);
             text-transform: uppercase;
             margin-top: 2px;
@@ -295,9 +253,9 @@
         /* Timeline Schedule */
         .timeline-wrapper {
             position: relative;
-            margin: 15px 0;
-            padding-left: 5px;
-            padding-right: 5px;
+            margin: 12px 0;
+            padding-left: 4px;
+            padding-right: 4px;
         }
 
         .timeline-wrapper::before {
@@ -324,23 +282,23 @@
         .timeline-box-item {
             width: 43%;
             background: var(--bg-card);
-            border: 1.5px solid rgba(243,198,83,0.4);
-            border-radius: 10px;
+            border: 1px solid rgba(212,175,55,0.35);
+            border-radius: 8px;
             padding: 10px 8px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
         }
 
         .timeline-box-item .ev-name {
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-main);
             margin-bottom: 2px;
         }
 
         .timeline-box-item .ev-time {
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 600;
             color: var(--gold-primary);
             font-family: 'Cinzel', serif;
         }
@@ -354,79 +312,80 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 12px;
             z-index: 3;
-            box-shadow: 0 0 10px rgba(243,198,83,0.6);
+            box-shadow: 0 0 8px rgba(212,175,55,0.5);
         }
 
-        /* Venue & Contact Card */
+        /* Venue & Contact */
         .venue-address {
             font-size: 13.5px;
-            font-weight: 500;
+            font-weight: 400;
             color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 12px;
+            line-height: 1.6;
+            margin-bottom: 10px;
         }
 
         .contact-box {
             margin-top: 10px;
             font-size: 13.5px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--gold-light);
+            line-height: 1.5;
         }
 
         .contact-box a {
             color: var(--gold-primary);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .map-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #f3c653 0%, #b8860b 100%);
-            color: #0d0304;
+            background: linear-gradient(135deg, #d4af37 0%, #aa8228 100%);
+            color: #0c0809;
             padding: 10px 24px;
-            border-radius: 25px;
-            font-weight: 700;
+            border-radius: 20px;
+            font-weight: 600;
             text-decoration: none;
             font-size: 13px;
             font-family: 'Cinzel', serif;
-            box-shadow: 0 5px 15px rgba(243,198,83,0.4);
+            box-shadow: 0 4px 12px rgba(212,175,55,0.3);
             margin-top: 12px;
             letter-spacing: 0.5px;
         }
 
-        /* Footer Branding */
+        /* Footer */
         .footer-note {
             padding: 16px;
             text-align: center;
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 500;
             color: var(--text-muted);
-            border-top: 1.5px solid rgba(243,198,83,0.15);
+            border-top: 1px solid rgba(212,175,55,0.15);
             font-family: 'Cinzel', serif;
-            letter-spacing: 1.2px;
-            line-height: 1.6;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
         }
 
         /* Floating Audio Control */
         .audio-control {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 44px;
-            height: 44px;
+            bottom: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
             background: var(--bg-card);
-            border: 2px solid var(--gold-primary);
+            border: 1px solid var(--gold-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 900;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
             color: var(--gold-primary);
-            font-size: 17px;
+            font-size: 16px;
             display: none;
         }
     </style>
@@ -437,22 +396,26 @@
 
         <!-- Gate Opening Overlay (First Page) -->
         <div id="gate-overlay">
-            <div class="om-symbol">🕉️</div>
-            <div class="gate-title">
-                ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
-                ॥ श्री हिंगलाज माता प्रसन्न ॥<br>
-                <span style="font-size: 16px; color: var(--gold-primary);">चक्र पूजन व हळदी कुंकू निमंत्रण</span>
+            <div>
+                <div class="om-symbol">🕉️</div>
+                <div class="gate-title">
+                    || श्री सप्तशृंगी माता प्रसन्न ||<br>
+                    || श्री हिंगलाज माता प्रसन्न ||<br>
+                    <span style="font-size: 13px; color: var(--gold-primary); display:inline-block; margin-top:4px;">चक्र पूजन व हळदी कुंकू निमंत्रण</span>
+                </div>
             </div>
 
-            <!-- Goddess Pictures Grid on First Page -->
-            <div class="welcome-deity-grid">
-                <div class="welcome-deity-box">
-                    <img src="https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80" alt="Saptashrungi Mata">
-                    <div class="welcome-deity-name">श्री सप्तशृंगी माता</div>
+            <!-- Welcome Goddess Grid (Using GitHub Image URLs placeholders) -->
+            <div class="deity-grid">
+                <div class="deity-box">
+                    <!-- येथे तुमचे GitHub वर असलेले सप्तशृंगी देवीचे नाव टाका (उदा. images/saptashrungi.jpg) -->
+                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images.jpg" alt="श्री सप्तशृंगी माता" onerror="this.src='https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80'">
+                    <div class="deity-name">श्री सप्तशृंगी माता</div>
                 </div>
-                <div class="welcome-deity-box">
-                    <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80" alt="Hinglaj Mata">
-                    <div class="welcome-deity-name">श्री हिंगलाज माता</div>
+                <div class="deity-box">
+                    <!-- येथे तुमचे GitHub वर असलेले हिंगलाज माता देवीचे नाव टाका (उदा. images/hinglaj.jpg) -->
+                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images%20(1).jpg" alt="श्री हिंगलाज माता" onerror="this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80'">
+                    <div class="deity-name">श्री हिंगलाज माता</div>
                 </div>
             </div>
 
@@ -471,32 +434,32 @@
         <!-- Header Section (Main Page) -->
         <div class="section header-section">
             <div class="sub-heading">
-                ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
-                ॥ श्री हिंगलाज माता प्रसन्न ॥
+                || श्री सप्तशृंगी माता प्रसन्न ||<br>
+                || श्री हिंगलाज माता प्रसन्न ||
             </div>
             <div class="main-heading">सस्नेह निमंत्रण</div>
-            <p style="font-size: 13.5px; font-weight: 600; color: var(--gold-light);">चक्र पूजन व हळदी कुंकू समारंभ</p>
+            <p style="font-size: 13.5px; font-weight: 500; color: var(--gold-light); margin-bottom: 12px;">चक्र पूजन व हळदी कुंकू समारंभ</p>
 
-            <!-- Goddess Pictures Grid -->
+            <!-- Main Page Deity Grid -->
             <div class="deity-grid">
                 <div class="deity-box">
-                    <img src="https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80" alt="Saptashrungi Mata">
+                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images.jpg" alt="श्री सप्तशृंगी माता" onerror="this.src='https://images.unsplash.com/photo-1609137144813-772c67bc2f3a?auto=format&fit=crop&w=400&q=80'">
                     <div class="deity-name">श्री सप्तशृंगी माता</div>
                 </div>
                 <div class="deity-box">
-                    <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80" alt="Hinglaj Mata">
+                    <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/images%20(1).jpg" alt="श्री हिंगलाज माता" onerror="this.src='https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80'">
                     <div class="deity-name">श्री हिंगलाज माता</div>
                 </div>
             </div>
         </div>
 
         <!-- Real-Time Countdown Section -->
-        <div class="section" style="padding-bottom: 10px;">
+        <div class="section" style="padding-bottom: 8px;">
             <div class="gold-card" style="margin: 0;">
-                <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 700; color: var(--gold-primary); letter-spacing: 1px; margin-bottom: 6px;">
-                    📅 पावन तारीख व वेळेपर्यंत बाकी अवधी
+                <div style="font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 600; color: var(--gold-primary); letter-spacing: 0.5px; margin-bottom: 4px;">
+                    📅 प्रत्यक्ष चालू वेळ व उर्वरित अवधी
                 </div>
-                <div style="font-size: 14.5px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                <div style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 2px;">
                     शुक्रवार दि. ११/१०/२०२४ रोजी
                 </div>
                 <div style="font-size: 13px; color: var(--gold-light); margin-bottom: 10px;">
@@ -525,20 +488,20 @@
         </div>
 
         <!-- Host / Family Section -->
-        <div class="section" style="padding-bottom: 10px;">
+        <div class="section" style="padding-bottom: 8px;">
             <div class="gold-card" style="margin: 0;">
-                <div style="font-size: 11.5px; font-weight: 700; color: var(--gold-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;">॥ निमंत्रक ॥</div>
+                <div style="font-size: 12.5px; font-weight: 600; color: var(--gold-primary); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;">॥ निमंत्रक ॥</div>
                 <div class="member-list">
-                    श्री. सुरेशचंद्र द. भावसार<br>
-                    श्री. सतीशचंद्र स. भावसार<br>
-                    सौ. जिज्ञासा स. भावसार<br>
-                    कु. इशिता स. भावसार<br>
-                    चि. दुर्वेश स. भावसार
+                    सुरेशचंद्र द. भावसार<br>
+                    सतीशचंद्र स. भावसार<br>
+                    जिज्ञासा स. भावसार<br>
+                    इशिता स. भावसार<br>
+                    दुर्वेश स. भावसार
                 </div>
-                <p style="font-size: 12.5px; font-weight: 500; color: var(--gold-light); line-height: 1.6; margin-top: 12px; font-style: italic;">
+                <p style="font-size: 12.5px; font-weight: 400; color: var(--gold-light); line-height: 1.5; margin-top: 10px; font-style: italic;">
                     "या देवी सर्वभूतेषु मातृरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥"
                 </p>
-                <p style="font-size: 13px; font-weight: 500; color: var(--text-muted); line-height: 1.6; margin-top: 8px;">
+                <p style="font-size: 13px; font-weight: 400; color: var(--text-muted); line-height: 1.5; margin-top: 6px;">
                     या मंगलमय प्रसंगी आपण कुटुंबपरिवारसह उपस्थित राहून आमच्या आनंदात सहभागी व्हावे, ही नम्र विनंती.
                 </p>
             </div>
@@ -590,7 +553,7 @@
         <!-- Venue & Contact Section -->
         <div class="section" style="padding-top: 0;">
             <div class="gold-card" style="margin: 0;">
-                <div class="section-title" style="margin-bottom: 8px;">📍 निवास स्थान व संपर्क</div>
+                <div class="section-title" style="margin-bottom: 6px;">📍 निवास स्थान व संपर्क</div>
                 <div class="venue-address">
                     अवधूत पार्क फ्लॅट नं-७, विकास कॉलनी, पार्कसाइड रेसिडेन्सी समोर, इंदिरा नगर, नाशिक - ०९.
                 </div>
@@ -607,8 +570,7 @@
 
         <!-- Footer -->
         <div class="footer-note">
-            समस्त भावसार परिवार<br>
-            <span style="font-size: 9px; color: var(--gold-border); margin-top: 4px; display:inline-block;">Designed with Devotion</span>
+            Designed by Durvesh Bhavsar TechArtMedia
         </div>
 
     </div>
@@ -641,7 +603,7 @@
             btn.innerHTML = isMuted ? '🔇' : '🔊';
         }
 
-        // Real-time Countdown Timer Logic
+        // Real-Time Countdown Timer Logic
         const targetDate = new Date("October 11, 2024 19:30:00").getTime();
 
         function updateCountdown() {
