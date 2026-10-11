@@ -38,6 +38,63 @@
       position: relative;
     }
 
+    /* Touch-To-Start Splash Overlay (Bypasses Browser Autoplay Lock) */
+    #startOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 0, 5, 0.94);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: opacity 0.6s ease, visibility 0.6s;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .enter-box {
+      border: 2px dashed var(--gold);
+      padding: 30px 24px;
+      border-radius: 20px;
+      background: rgba(123, 0, 20, 0.55);
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      animation: pulseBox 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseBox {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    .enter-shree {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .enter-btn {
+      margin-top: 18px;
+      background: var(--gold);
+      color: #3b050d;
+      font-family: 'Mukta', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(197, 155, 39, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
     #petalCanvas {
       position: fixed;
       top: 0;
@@ -326,7 +383,7 @@
       transform: translateY(-1px);
     }
 
-    /* Floating Music Button */
+    /* Floating Music Control Button */
     .sound-badge {
       position: fixed;
       bottom: 18px;
@@ -372,10 +429,25 @@
 </head>
 <body>
 
-  <!-- Background Audio Element -->
+  <!-- Touch-to-Unmute Splash Screen -->
+  <div id="startOverlay" onclick="enterInviteWithMusic()">
+    <div class="enter-box">
+      <div class="enter-shree">॥ श्री ॥</div>
+      <div style="font-size: 17px; color: #fff; font-weight: 600; line-height: 1.6;">
+        ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
+        ॥ श्री हिंगलाज माता प्रसन्न ॥
+      </div>
+      <button class="enter-btn">
+        <span>🔔</span> निमंत्रण पत्रिका उघडा
+      </button>
+      <div style="margin-top: 12px; font-size: 12px; color: #f5cfcf;">(क्लिक केल्यावर संगीत सुरू होईल)</div>
+    </div>
+  </div>
+
+  <!-- Audio Element -->
   <audio id="bgMusic" src="./music.mp3" loop preload="auto"></audio>
 
-  <!-- Floating Music Toggle Button -->
+  <!-- Sound Toggle -->
   <div class="sound-badge" id="musicBadge" onclick="toggleAudio()">
     <span id="soundIcon">🔊</span> <span id="soundLabel">संगीत सुरू आहे</span>
   </div>
@@ -398,7 +470,6 @@
       <div class="shrine-row">
         <div class="shrine-item">
           <div class="deity-box">
-            <!-- सप्तशृंगी देवी इमेज -->
             <img src="./images.jpg" alt="श्री सप्तशृंगी माता">     
           </div>
           <span class="deity-caption">श्री सप्तशृंगी माता</span>
@@ -406,23 +477,19 @@
 
         <div class="shrine-item">
           <div class="deity-box">
-            <!-- हिंगलाज माता इमेज -->
             <img src="./images%20(1).jpg" alt="श्री हिंगलाज माता">
           </div>
           <span class="deity-caption">श्री हिंगलाज माता</span>
         </div>
       </div>
 
-      <!-- Normal Font Banner -->
       <div class="title-banner">सस्नेह निमंत्रण</div>
 
-      <!-- Shloka -->
       <div class="shloka-box">
         “ या देवी सर्वभूतेषु मातृरूपेण संस्थिता।<br>
         नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥ ”
       </div>
 
-      <!-- Invitation Text -->
       <div class="invite-text">
         या वर्षीच्या नवरात्र उत्सवाच्या पवित्र काळात, आमच्या घरी
         <span class="event-title">चक्रपूजा</span>
@@ -485,30 +552,36 @@
   </div>
 
   <script>
-    // --- BACKGROUND MUSIC ENGINE ---
     const audio = document.getElementById('bgMusic');
     const soundIcon = document.getElementById('soundIcon');
     const soundLabel = document.getElementById('soundLabel');
-    let hasStarted = false;
+    const startOverlay = document.getElementById('startOverlay');
 
-    function startMusic() {
-      if (!hasStarted) {
-        audio.play().then(() => {
-          hasStarted = true;
-          soundIcon.textContent = '🔊';
-          soundLabel.textContent = 'संगीत सुरू आहे';
-        }).catch(() => {});
-      }
+    // Guaranteed Direct Audio Start upon user interaction
+    function enterInviteWithMusic() {
+      audio.play().then(() => {
+        soundIcon.textContent = '🔊';
+        soundLabel.textContent = 'संगीत सुरू आहे';
+      }).catch(err => {
+        console.log("Audio play error:", err);
+      });
+
+      // Smooth fade-out of splash screen
+      startOverlay.style.opacity = '0';
+      setTimeout(() => {
+        startOverlay.style.display = 'none';
+      }, 600);
     }
 
-    // Auto-plays on page load; falls back gracefully to first touch/scroll
+    // Try automatic background playback on initial load
     window.addEventListener('load', () => {
       audio.play().then(() => {
-        hasStarted = true;
+        // If device allows direct unmuted autoplay, dismiss overlay automatically
+        startOverlay.style.display = 'none';
+        soundIcon.textContent = '🔊';
+        soundLabel.textContent = 'संगीत सुरू आहे';
       }).catch(() => {
-        ['touchstart', 'touchend', 'scroll', 'click'].forEach(evt => {
-          window.addEventListener(evt, startMusic, { once: true, passive: true });
-        });
+        // Kept visible for user's single tap if autoplay was blocked
       });
     });
 
@@ -524,7 +597,7 @@
       }
     }
 
-    // --- DEVANAGARI COUNTDOWN TIMER ---
+    // Devanagari numerals for countdown
     function toDevanagari(num) {
       const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       const str = String(num).padStart(2, '0');
@@ -558,7 +631,7 @@
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    // --- REAL PHOTOGRAPH-BASED FLOWER & PETAL SHOWER ANIMATION ---
+    // Flowers Shower Animation
     const canvas = document.getElementById('petalCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -577,22 +650,15 @@
     ];
 
     const loadedImgs = [];
-    let loadedCount = 0;
-
     flowerImages.forEach(src => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.src = src;
-      img.onload = () => {
-        loadedCount++;
-      };
       loadedImgs.push(img);
     });
 
     const items = [];
-    const ITEM_COUNT = 24;
-
-    for (let i = 0; i < ITEM_COUNT; i++) {
+    for (let i = 0; i < 24; i++) {
       items.push({
         x: Math.random() * width,
         y: Math.random() * height - height,
