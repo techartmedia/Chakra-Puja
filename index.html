@@ -410,6 +410,17 @@
       transform: scale(1.05);
     }
 
+    /* Footer Credit */
+    .designer-footer {
+      margin-top: 28px;
+      padding-top: 14px;
+      border-top: 1px solid #ebd9b5;
+      font-size: 13.5px;
+      color: #7a6e69;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
     @media (max-width: 540px) {
       .card { padding: 26px 16px 32px; }
       .shree-badge { font-size: 36px; }
@@ -525,7 +536,7 @@
         <div class="nimantrak-head">॥ निमंत्रक ॥</div>
         <div class="sub-head">(खानोरे) परिवार</div>
         <div class="names-list">
-          श्री. अप्पासाहेब सुरेशचंद्र भावसार<br>
+          श्री. आप्पासाहेब सुरेशचंद्र भावसार<br>
           श्री. सतीशचंद्र भावसार &nbsp;|&nbsp; सौ. जिज्ञासा भावसार<br>
           डॉ. इशिता भावसार &nbsp;|&nbsp; दुर्वेश भावसार
         </div>
@@ -548,6 +559,11 @@
         </a>
       </div>
 
+      <!-- Exact Footer Credit -->
+      <div class="designer-footer">
+        Designed By Durvesh Bhavsar TechArtMedia
+      </div>
+
     </div>
   </div>
 
@@ -557,7 +573,6 @@
     const soundLabel = document.getElementById('soundLabel');
     const startOverlay = document.getElementById('startOverlay');
 
-    // Guaranteed Direct Audio Start upon user interaction
     function enterInviteWithMusic() {
       audio.play().then(() => {
         soundIcon.textContent = '🔊';
@@ -566,38 +581,20 @@
         console.log("Audio play error:", err);
       });
 
-      // Smooth fade-out of splash screen
       startOverlay.style.opacity = '0';
       setTimeout(() => {
         startOverlay.style.display = 'none';
       }, 600);
     }
 
-    // Try automatic background playback on initial load
     window.addEventListener('load', () => {
       audio.play().then(() => {
-        // If device allows direct unmuted autoplay, dismiss overlay automatically
         startOverlay.style.display = 'none';
         soundIcon.textContent = '🔊';
         soundLabel.textContent = 'संगीत सुरू आहे';
-      }).catch(() => {
-        // Kept visible for user's single tap if autoplay was blocked
-      });
+      }).catch(() => {});
     });
 
-    function toggleAudio() {
-      if (audio.paused) {
-        audio.play();
-        soundIcon.textContent = '🔊';
-        soundLabel.textContent = 'संगीत सुरू आहे';
-      } else {
-        audio.pause();
-        soundIcon.textContent = '🔇';
-        soundLabel.textContent = 'संगीत बंद आहे';
-      }
-    }
-
-    // Devanagari numerals for countdown
     function toDevanagari(num) {
       const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       const str = String(num).padStart(2, '0');
