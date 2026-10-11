@@ -67,7 +67,6 @@
       overflow: hidden;
     }
 
-    /* Corner Borders */
     .corner {
       position: absolute;
       width: 32px;
@@ -80,7 +79,6 @@
     .c-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
     .c-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
-    /* Top Prominent श्री Header */
     .shree-badge {
       font-family: 'Mukta', sans-serif;
       font-size: 42px;
@@ -102,7 +100,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Deity Images Row */
     .shrine-row {
       display: flex;
       justify-content: center;
@@ -124,7 +121,7 @@
       height: 230px;
       border-radius: 12px;
       border: 2px solid var(--gold);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       overflow: hidden;
       background: #f7eee1;
     }
@@ -143,7 +140,6 @@
       margin-top: 8px;
     }
 
-    /* Regular Clean Headline Banner */
     .title-banner {
       background: #e59819;
       color: #ffffff;
@@ -158,7 +154,6 @@
       letter-spacing: 1px;
     }
 
-    /* Shloka */
     .shloka-box {
       background: var(--gold-light);
       border-left: 4px solid var(--gold);
@@ -173,7 +168,6 @@
       line-height: 1.6;
     }
 
-    /* Invitation Body */
     .invite-text {
       font-size: 18px;
       font-weight: 500;
@@ -190,7 +184,6 @@
       margin: 8px 0;
     }
 
-    /* Countdown Timer */
     .timer-wrap {
       background: linear-gradient(135deg, #58000f, #7a0b1d);
       border-radius: 12px;
@@ -234,7 +227,6 @@
       color: #f1f1f1;
     }
 
-    /* Nimantrak Section with enhanced spacing */
     .nimantrak-box {
       border-top: 1.5px solid #ebd9b5;
       padding-top: 28px;
@@ -288,7 +280,6 @@
       background: #f4e5c7;
     }
 
-    /* Venue details with enhanced padding and margin */
     .venue-card {
       background: #fdfaf3;
       border: 1px solid #e8dbbe;
@@ -308,7 +299,6 @@
       font-size: 18px;
     }
 
-    /* Action Buttons with clean spacing */
     .btn-row {
       display: flex;
       justify-content: center;
@@ -331,9 +321,36 @@
       box-shadow: 0 4px 14px rgba(123, 0, 20, 0.3);
       transition: all 0.2s ease;
     }
-    .btn:hover { 
-      background: #96061d; 
+    .btn:hover {
+      background: #96061d;
       transform: translateY(-1px);
+    }
+
+    /* Floating Music Button */
+    .sound-badge {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      background: var(--maroon);
+      color: #fff;
+      border: 2px solid var(--gold);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-family: 'Mukta', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .sound-badge:hover {
+      transform: scale(1.05);
     }
 
     @media (max-width: 540px) {
@@ -355,6 +372,14 @@
 </head>
 <body>
 
+  <!-- Background Audio Element -->
+  <audio id="bgMusic" src="./music.mp3" loop preload="auto"></audio>
+
+  <!-- Floating Music Toggle Button -->
+  <div class="sound-badge" id="musicBadge" onclick="toggleAudio()">
+    <span id="soundIcon">🔊</span> <span id="soundLabel">संगीत सुरू आहे</span>
+  </div>
+
   <canvas id="petalCanvas"></canvas>
 
   <div class="card-wrapper">
@@ -364,13 +389,12 @@
       <div class="corner c-bl"></div>
       <div class="corner c-br"></div>
 
-
       <div class="deity-pranam">
         ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
         ॥ श्री हिंगलाज माता प्रसन्न ॥
       </div>
 
-     <!-- Two Deities -->
+      <!-- Two Deities -->
       <div class="shrine-row">
         <div class="shrine-item">
           <div class="deity-box">
@@ -461,7 +485,46 @@
   </div>
 
   <script>
-    // Convert Western Digits to Devanagari
+    // --- BACKGROUND MUSIC ENGINE ---
+    const audio = document.getElementById('bgMusic');
+    const soundIcon = document.getElementById('soundIcon');
+    const soundLabel = document.getElementById('soundLabel');
+    let hasStarted = false;
+
+    function startMusic() {
+      if (!hasStarted) {
+        audio.play().then(() => {
+          hasStarted = true;
+          soundIcon.textContent = '🔊';
+          soundLabel.textContent = 'संगीत सुरू आहे';
+        }).catch(() => {});
+      }
+    }
+
+    // Auto-plays on page load; falls back gracefully to first touch/scroll
+    window.addEventListener('load', () => {
+      audio.play().then(() => {
+        hasStarted = true;
+      }).catch(() => {
+        ['touchstart', 'touchend', 'scroll', 'click'].forEach(evt => {
+          window.addEventListener(evt, startMusic, { once: true, passive: true });
+        });
+      });
+    });
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        soundIcon.textContent = '🔊';
+        soundLabel.textContent = 'संगीत सुरू आहे';
+      } else {
+        audio.pause();
+        soundIcon.textContent = '🔇';
+        soundLabel.textContent = 'संगीत बंद आहे';
+      }
+    }
+
+    // --- DEVANAGARI COUNTDOWN TIMER ---
     function toDevanagari(num) {
       const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
       const str = String(num).padStart(2, '0');
@@ -495,7 +558,7 @@
     setInterval(updateTimer, 1000);
     updateTimer();
 
-    // Gentle Marigold Petals Animation
+    // --- REAL PHOTOGRAPH-BASED FLOWER & PETAL SHOWER ANIMATION ---
     const canvas = document.getElementById('petalCanvas');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
@@ -506,44 +569,88 @@
       height = canvas.height = window.innerHeight;
     });
 
-    const petals = [];
-    const colors = ['#f49c12', '#e67e22', '#d35400', '#f1c40f'];
+    const flowerImages = [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Tagetes_patula_orange_flower_transparent.png/240px-Tagetes_patula_orange_flower_transparent.png',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Red_rose_bloom_transparent.png/240px-Red_rose_bloom_transparent.png',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Single_rose_petal_transparent.png/240px-Single_rose_petal_transparent.png',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Yellow_marigold_flower_cutout.png/240px-Yellow_marigold_flower_cutout.png'
+    ];
 
-    for (let i = 0; i < 26; i++) {
-      petals.push({
+    const loadedImgs = [];
+    let loadedCount = 0;
+
+    flowerImages.forEach(src => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+      };
+      loadedImgs.push(img);
+    });
+
+    const items = [];
+    const ITEM_COUNT = 24;
+
+    for (let i = 0; i < ITEM_COUNT; i++) {
+      items.push({
         x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 5 + 3,
-        d: Math.random() * 1.5 + 0.6,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        tilt: Math.random() * 10,
-        tiltAngle: 0,
-        tiltAngleInc: (Math.random() * 0.05) + 0.02
+        y: Math.random() * height - height,
+        imgIndex: Math.floor(Math.random() * flowerImages.length),
+        size: Math.random() * 18 + 22,
+        speedY: Math.random() * 1.5 + 1.0,
+        speedX: Math.random() * 0.8 - 0.4,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() * 0.02 - 0.01),
+        flipAngle: Math.random() * Math.PI * 2,
+        flipSpeed: Math.random() * 0.035 + 0.015,
+        swayAngle: Math.random() * Math.PI * 2,
+        swaySpeed: Math.random() * 0.03 + 0.012,
+        opacity: Math.random() * 0.2 + 0.8
       });
     }
 
-    function drawPetals() {
+    function renderShower() {
       ctx.clearRect(0, 0, width, height);
-      petals.forEach(p => {
-        ctx.beginPath();
-        ctx.lineWidth = p.r / 2;
-        ctx.strokeStyle = p.color;
-        ctx.fillStyle = p.color;
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
-        ctx.fill();
 
-        p.tiltAngle += p.tiltAngleInc;
-        p.y += p.d;
-        p.x += Math.sin(p.tiltAngle);
+      items.forEach(it => {
+        ctx.save();
+        ctx.translate(it.x, it.y);
+        ctx.rotate(it.rotation);
 
-        if (p.y > height) {
-          p.x = Math.random() * width;
-          p.y = -10;
+        const scaleX = Math.cos(it.flipAngle);
+        const scaleY = 1 + Math.sin(it.flipAngle) * 0.15;
+        ctx.scale(scaleX, scaleY);
+        ctx.globalAlpha = it.opacity;
+
+        const currentImg = loadedImgs[it.imgIndex];
+        if (currentImg && currentImg.complete && currentImg.naturalWidth > 0) {
+          ctx.drawImage(currentImg, -it.size / 2, -it.size / 2, it.size, it.size);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, it.size * 0.35, 0, Math.PI * 2);
+          ctx.fillStyle = '#f39c12';
+          ctx.fill();
+        }
+
+        ctx.restore();
+
+        it.swayAngle += it.swaySpeed;
+        it.flipAngle += it.flipSpeed;
+        it.rotation += it.rotSpeed;
+        it.y += it.speedY;
+        it.x += Math.sin(it.swayAngle) * 1.2 + it.speedX;
+
+        if (it.y > height + 40) {
+          it.y = -40;
+          it.x = Math.random() * width;
         }
       });
-      requestAnimationFrame(drawPetals);
+
+      requestAnimationFrame(renderShower);
     }
-    drawPetals();
+
+    renderShower();
   </script>
 </body>
 </html>
