@@ -1,602 +1,551 @@
 <!DOCTYPE html>
 <html lang="mr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>श्री चक्र पूजन व हळदी कुंकू - सस्नेह निमंत्रण | भावसार परिवार</title>
-    <!-- श्री-लिपी सदृश पारंपरिक व आकर्षक मराठी लुकसाठी युिकोड फॉन्ट -->
-    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&family=Yatra+One&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0c0809;
-            --bg-card: #160d0e;
-            --gold-primary: #d4af37;
-            --gold-light: #f3e5ab;
-            --gold-border: #8c6d36;
-            --text-main: #f5f5f5;
-            --text-muted: #dcd6d0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>॥ श्री ॥ निमंत्रण - चक्रपूजा</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon: #7b0014;
+      --maroon-dark: #4d000d;
+      --gold: #c59b27;
+      --gold-border: #d4af37;
+      --gold-light: #fff9ea;
+      --red-accent: #c01525;
+      --text-dark: #1f1b1a;
+      --paper-bg: #fffcf7;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        html, body {
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Tiro Devanagari Marathi', serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    body {
+      background: radial-gradient(circle at 50% 15%, #5a0410 0%, #300007 100%);
+      font-family: 'Mukta', sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 14px 48px;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        .mobile-container {
-            width: 100vw;
-            height: 100vh;
-            max-width: 450px;
-            max-height: 100vh;
-            background: var(--bg-dark);
-            position: relative;
-            overflow-y: hidden;
-            overflow-x: hidden;
-            box-shadow: 0 0 25px rgba(0,0,0,0.8);
-            border: 1px solid var(--gold-border);
-        }
+    #petalCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
 
-        .mobile-container.opened {
-            overflow-y: auto;
-        }
+    .card-wrapper {
+      position: relative;
+      max-width: 650px;
+      width: 100%;
+      z-index: 2;
+      margin: 0 auto;
+    }
 
-        .mobile-container::-webkit-scrollbar {
-            width: 4px;
-        }
-        .mobile-container::-webkit-scrollbar-thumb {
-            background: var(--gold-border);
-            border-radius: 4px;
-        }
+    .card {
+      background: var(--paper-bg);
+      border-radius: 20px;
+      padding: 40px 28px 46px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+      border: 3px solid var(--gold-border);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
 
-        #gate-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, #380b10 0%, #0c0809 100%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            padding: 24px 20px;
-            transition: opacity 0.7s ease, visibility 0.7s ease;
-            overflow-y: auto;
-        }
+    /* Corner Borders */
+    .corner {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--maroon);
+      pointer-events: none;
+    }
+    .c-tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .c-tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .c-bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .c-br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
-        #gate-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+    /* Top Prominent श्री Header */
+    .shree-badge {
+      font-family: 'Mukta', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--maroon);
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 2px;
+    }
 
-        .om-symbol {
-            font-size: 32px;
-            color: var(--gold-primary);
-            margin-bottom: 2px;
-        }
+    .deity-pranam {
+      font-family: 'Mukta', sans-serif;
+      font-size: 20px;
+      color: var(--maroon);
+      line-height: 1.6;
+      font-weight: 800;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
 
-        .gate-title {
-            font-family: 'Yatra One', cursive;
-            font-size: 14.5px;
-            color: var(--gold-light);
-            line-height: 1.7;
-        }
+    /* Deity Images Row */
+    .shrine-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
 
-        .deity-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            width: 100%;
-            margin: 10px 0;
-        }
+    .shrine-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      max-width: 210px;
+    }
 
-        .deity-box {
-            background: var(--bg-card);
-            border: 1px solid var(--gold-border);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-        }
+    .deity-box {
+      width: 100%;
+      height: 230px;
+      border-radius: 12px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      overflow: hidden;
+      background: #f7eee1;
+    }
 
-        .deity-box img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            object-position: center top;
-        }
+    .deity-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-        .deity-name {
-            font-family: 'Yatra One', cursive;
-            font-size: 13px;
-            color: var(--gold-light);
-            padding: 6px 4px;
-            background: rgba(12, 8, 9, 0.95);
-        }
+    .deity-caption {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-top: 8px;
+    }
 
-        .welcome-quote {
-            font-size: 13px;
-            color: var(--text-muted);
-            font-style: italic;
-            background: rgba(22, 13, 14, 0.8);
-            border: 1px solid rgba(212,175,55,0.3);
-            padding: 10px 14px;
-            border-radius: 8px;
-            width: 100%;
-            line-height: 1.6;
-        }
+    /* Regular Clean Headline Banner */
+    .title-banner {
+      background: #e59819;
+      color: #ffffff;
+      font-family: 'Mukta', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      padding: 6px 32px;
+      border-radius: 50px;
+      display: inline-block;
+      box-shadow: 0 3px 10px rgba(229, 152, 25, 0.35);
+      margin: 10px auto 20px;
+      letter-spacing: 1px;
+    }
 
-        .open-btn {
-            background: linear-gradient(135deg, #d4af37 0%, #aa8228 100%);
-            color: #0c0809;
-            border: none;
-            padding: 12px 30px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 25px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
-            font-family: 'Yatra One', cursive;
-            letter-spacing: 1px;
-        }
+    /* Shloka */
+    .shloka-box {
+      background: var(--gold-light);
+      border-left: 4px solid var(--gold);
+      border-right: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin: 0 auto 24px;
+      font-family: 'Mukta', sans-serif;
+      color: var(--maroon);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
 
-        .section {
-            padding: 20px 16px;
-            text-align: center;
-            position: relative;
-        }
+    /* Invitation Body */
+    .invite-text {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.9;
+      color: #2c2725;
+      margin-bottom: 28px;
+    }
 
-        .header-section {
-            background: radial-gradient(circle at center, #2c0a0e 0%, var(--bg-dark) 100%);
-            border-bottom: 1px solid rgba(212,175,55,0.25);
-            padding-top: 24px;
-        }
+    .event-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--red-accent);
+      display: block;
+      margin: 8px 0;
+    }
 
-        .main-heading {
-            font-family: 'Yatra One', cursive;
-            font-size: 26px;
-            color: var(--gold-light);
-            margin-bottom: 4px;
-        }
+    /* Countdown Timer */
+    .timer-wrap {
+      background: linear-gradient(135deg, #58000f, #7a0b1d);
+      border-radius: 12px;
+      padding: 16px 12px;
+      color: #fff;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    }
 
-        .sub-heading {
-            font-family: 'Yatra One', cursive;
-            font-size: 14px;
-            color: var(--gold-primary);
-            line-height: 1.7;
-            margin-bottom: 8px;
-        }
+    .timer-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fce29d;
+      margin-bottom: 10px;
+    }
 
-        .gold-card {
-            background: var(--bg-card);
-            border: 1px solid var(--gold-border);
-            border-radius: 12px;
-            padding: 18px 16px;
-            margin: 10px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+    .timer-grid {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
 
-        .section-title {
-            font-family: 'Yatra One', cursive;
-            font-size: 18px;
-            color: var(--gold-light);
-            margin-bottom: 12px;
-        }
+    .time-col {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-radius: 8px;
+      padding: 8px 12px;
+      min-width: 64px;
+    }
 
-        .member-list {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-main);
-            line-height: 1.8;
-            margin-top: 6px;
-        }
+    .time-val {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #ffdf79;
+    }
 
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-top: 10px;
-        }
+    .time-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      color: #f1f1f1;
+    }
 
-        .time-box {
-            background: rgba(212, 175, 55, 0.06);
-            border: 1px solid var(--gold-border);
-            border-radius: 8px;
-            padding: 8px 4px;
-            text-align: center;
-        }
+    /* Nimantrak Section with enhanced spacing */
+    .nimantrak-box {
+      border-top: 1.5px solid #ebd9b5;
+      padding-top: 28px;
+      margin-top: 10px;
+      margin-bottom: 34px;
+    }
 
-        .time-val {
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--gold-light);
-        }
+    .nimantrak-head {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--maroon);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
 
-        .time-lbl {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
+    .sub-head {
+      color: var(--red-accent);
+      font-weight: 700;
+      font-size: 16.5px;
+      margin-bottom: 16px;
+    }
 
-        .timeline-wrapper {
-            position: relative;
-            margin: 12px 0;
-            padding: 0 4px;
-        }
+    .names-list {
+      font-size: 17.5px;
+      font-weight: 600;
+      color: #27211f;
+      line-height: 2.1;
+      margin-bottom: 22px;
+    }
 
-        .timeline-wrapper::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--gold-border), var(--gold-primary), var(--gold-border));
-            transform: translateX(-50%);
-            z-index: 1;
-        }
+    .phones-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
 
-        .timeline-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-            position: relative;
-            z-index: 2;
-        }
+    .phone-link {
+      color: var(--maroon);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16.5px;
+      padding: 7px 16px;
+      border-radius: 8px;
+      background: #fbf3e2;
+      border: 1px solid #ebd8b2;
+      transition: background 0.2s ease;
+    }
+    .phone-link:hover {
+      background: #f4e5c7;
+    }
 
-        .timeline-box-item {
-            width: 43%;
-            background: var(--bg-card);
-            border: 1px solid rgba(212,175,55,0.35);
-            border-radius: 8px;
-            padding: 10px 8px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-        }
+    /* Venue details with enhanced padding and margin */
+    .venue-card {
+      background: #fdfaf3;
+      border: 1px solid #e8dbbe;
+      border-radius: 14px;
+      padding: 20px 18px;
+      margin-top: 10px;
+      margin-bottom: 32px;
+      font-size: 16.5px;
+      line-height: 1.8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
 
-        .timeline-box-item .ev-name {
-            font-size: 13.5px;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 2px;
-        }
+    .venue-title {
+      font-weight: 800;
+      color: var(--maroon);
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
 
-        .timeline-box-item .ev-time {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gold-primary);
-            font-family: 'Cinzel', serif;
-        }
+    /* Action Buttons with clean spacing */
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
 
-        .timeline-node-icon {
-            width: 26px;
-            height: 26px;
-            background: var(--bg-dark);
-            border: 2px solid var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            z-index: 3;
-            box-shadow: 0 0 8px rgba(212,175,55,0.5);
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 16.5px;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--maroon);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(123, 0, 20, 0.3);
+      transition: all 0.2s ease;
+    }
+    .btn:hover { 
+      background: #96061d; 
+      transform: translateY(-1px);
+    }
 
-        .venue-address {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .contact-box {
-            margin-top: 10px;
-            font-size: 14px;
-            color: var(--gold-light);
-            line-height: 1.5;
-        }
-
-        .contact-box a {
-            color: var(--gold-primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .map-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #d4af37 0%, #aa8228 100%);
-            color: #0c0809;
-            padding: 10px 24px;
-            border-radius: 20px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 13.5px;
-            font-family: 'Yatra One', cursive;
-            box-shadow: 0 4px 12px rgba(212,175,55,0.3);
-            margin-top: 12px;
-        }
-
-        .footer-note {
-            padding: 16px;
-            text-align: center;
-            font-size: 12.5px;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(212,175,55,0.15);
-            font-family: 'Cinzel', serif;
-        }
-
-        .audio-control {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border: 1px solid var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 900;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-            color: var(--gold-primary);
-            font-size: 16px;
-            display: none;
-        }
-    </style>
+    @media (max-width: 540px) {
+      .card { padding: 26px 16px 32px; }
+      .shree-badge { font-size: 36px; }
+      .deity-pranam { font-size: 17px; margin-bottom: 18px; }
+      .deity-box { height: 165px; }
+      .title-banner { font-size: 22px; padding: 5px 24px; }
+      .shloka-box { font-size: 15px; }
+      .event-title { font-size: 24px; }
+      .timer-wrap { margin-bottom: 28px; }
+      .nimantrak-box { padding-top: 22px; margin-bottom: 26px; }
+      .names-list { line-height: 1.9; margin-bottom: 18px; }
+      .venue-card { padding: 16px 14px; margin-bottom: 26px; font-size: 15.5px; }
+      .time-col { min-width: 52px; padding: 6px 8px; }
+      .time-val { font-size: 22px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="mobile-container" id="main-container">
+  <canvas id="petalCanvas"></canvas>
 
-        <!-- Gate Opening Overlay -->
-        <div id="gate-overlay">
-            <div>
-                <div class="om-symbol">🕉</div>
-                <div class="gate-title">
-                    || श्री सप्तशृंगी माता प्रसन्न ||<br>
-                    || श्री हिंगलाज माता प्रसन्न ||<br>
-                    <span style="font-size: 13.5px; color: var(--gold-primary); display:inline-block; margin-top:4px;">चक्र पूजन व हळदी कुंकू निमंत्रण</span>
-                </div>
-            </div>
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="corner c-tl"></div>
+      <div class="corner c-tr"></div>
+      <div class="corner c-bl"></div>
+      <div class="corner c-br"></div>
 
-            <!-- GitHub Raw Image Links -->
-            <div class="deity-grid">
-                <div class="deity-box">
-                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images.jpg" alt="श्री सप्तशृंगी माता">
-                    <div class="deity-name">श्री सप्तशृंगी माता</div>
-                </div>
-                <div class="deity-box">
-                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images%20(1).jpg" alt="श्री हिंगलाज माता">
-                    <div class="deity-name">श्री हिंगलाज माता</div>
-                </div>
-            </div>
+      <!-- Top Header -->
+      <div class="shree-badge">॥ श्री ॥</div>
 
-            <div class="welcome-quote">
-                "या देवी सर्वभूतेषु मातृरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥"
-            </div>
+      <div class="deity-pranam">
+        ॥ श्री सप्तशृंगी माता प्रसन्न ॥<br>
+        ॥ श्री हिंगलाज माता प्रसन्न ॥
+      </div>
 
-            <button class="open-btn" onclick="openInvitation()">निमंत्रण उघडा ✉️</button>
+     <!-- Two Deities -->
+      <div class="shrine-row">
+        <div class="shrine-item">
+          <div class="deity-box">
+            <!-- सप्तशृंगी देवी इमेज -->
+            <img src="./images%20(1).jpg" alt="श्री सप्तशृंगी माता">
+          </div>
+          <span class="deity-caption">श्री सप्तशृंगी माता</span>
         </div>
 
-        <div class="audio-control" id="audio-btn" onclick="toggleAudio()" title="Mute/Unmute">
-            🔊
+        <div class="shrine-item">
+          <div class="deity-box">
+            <!-- हिंगलाज माता इमेज -->
+            <img src="./images.jpg" alt="श्री हिंगलाज माता">
+          </div>
+          <span class="deity-caption">श्री हिंगलाज माता</span>
         </div>
+      </div>
 
-        <!-- Header Section -->
-        <div class="section header-section">
-            <div class="sub-heading">
-                || श्री सप्तशृंगी माता प्रसन्न ||<br>
-                || श्री हिंगलाज माता प्रसन्न ||
-            </div>
-            <div class="main-heading">सस्नेह निमंत्रण</div>
-            <p style="font-size: 14px; font-weight: 600; color: var(--gold-light); margin-bottom: 12px;">चक्र पूजन व हळदी कुंकू समारंभ</p>
+      <!-- Normal Font Banner -->
+      <div class="title-banner">सस्नेह निमंत्रण</div>
 
-            <div class="deity-grid">
-                <div class="deity-box">
-                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images.jpg" alt="श्री सप्तशृंगी माता">
-                    <div class="deity-name">श्री सप्तशृंगी माता</div>
-                </div>
-                <div class="deity-box">
-                    <img src="https://raw.githubusercontent.com/techartmedia/Chakra-Puja/main/images%20(1).jpg" alt="श्री हिंगलाज माता">
-                    <div class="deity-name">श्री हिंगलाज माता</div>
-                </div>
-            </div>
+      <!-- Shloka -->
+      <div class="shloka-box">
+        “ या देवी सर्वभूतेषु मातृरूपेण संस्थिता।<br>
+        नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥ ”
+      </div>
+
+      <!-- Invitation Text -->
+      <div class="invite-text">
+        या वर्षीच्या नवरात्र उत्सवाच्या पवित्र काळात, आमच्या घरी
+        <span class="event-title">चक्रपूजा</span>
+        कार्यक्रमाचे आयोजन <strong>रविवार दि. १८/१०/२०२६</strong> रोजी करण्यात आले आहे.<br>
+        या मंगलमय प्रसंगी आपण परिवारासह उपस्थित राहून आमच्या आनंदात सहभागी व्हावे, ही नम्र विनंती.
+      </div>
+
+      <!-- Live Devanagari Countdown Timer -->
+      <div class="timer-wrap">
+        <div class="timer-title">॥ शुभ मुहूर्ताची वेळ येण्यास शिल्लक ॥</div>
+        <div class="timer-grid">
+          <div class="time-col">
+            <div class="time-val" id="dBox">००</div>
+            <div class="time-lbl">दिवस</div>
+          </div>
+          <div class="time-col">
+            <div class="time-val" id="hBox">००</div>
+            <div class="time-lbl">तास</div>
+          </div>
+          <div class="time-col">
+            <div class="time-val" id="mBox">००</div>
+            <div class="time-lbl">मिनिटे</div>
+          </div>
+          <div class="time-col">
+            <div class="time-val" id="sBox">००</div>
+            <div class="time-lbl">सेकंद</div>
+          </div>
         </div>
+      </div>
 
-        <!-- Countdown Section -->
-        <div class="section" style="padding-bottom: 8px;">
-            <div class="gold-card" style="margin: 0;">
-                <div style="font-family: 'Yatra One', cursive; font-size: 13px; color: var(--gold-primary); margin-bottom: 4px;">
-                    📅 प्रत्यक्ष चालू वेळ व उर्वरित अवधी
-                </div>
-                <div style="font-size: 14.5px; font-weight: 600; color: var(--text-main); margin-bottom: 2px;">
-                    शुक्रवार दि. ११/१०/२०२४ रोजी
-                </div>
-                <div style="font-size: 13.5px; color: var(--gold-light); margin-bottom: 10px;">
-                    वेळ : सायं. ७:३० वाजता
-                </div>
-                
-                <div class="countdown-grid">
-                    <div class="time-box">
-                        <div class="time-val" id="days">00</div>
-                        <div class="time-lbl">दिवस</div>
-                    </div>
-                    <div class="time-box">
-                        <div class="time-val" id="hours">00</div>
-                        <div class="time-lbl">तास</div>
-                    </div>
-                    <div class="time-box">
-                        <div class="time-val" id="mins">00</div>
-                        <div class="time-lbl">मिनिटे</div>
-                    </div>
-                    <div class="time-box">
-                        <div class="time-val" id="secs">00</div>
-                        <div class="time-lbl">सेकंद</div>
-                    </div>
-                </div>
-            </div>
+      <!-- Nimantrak Family Section -->
+      <div class="nimantrak-box">
+        <div class="nimantrak-head">॥ निमंत्रक ॥</div>
+        <div class="sub-head">(खानोरे) परिवार</div>
+        <div class="names-list">
+          श्री. सुरेशचंद्र भावसार<br>
+          श्री. सतीशचंद्र भावसार &nbsp;|&nbsp; सौ. जिज्ञासा भावसार<br>
+          इशिता भावसार &nbsp;|&nbsp; दुर्वेश भावसार
         </div>
-
-        <!-- Host Section -->
-        <div class="section" style="padding-bottom: 8px;">
-            <div class="gold-card" style="margin: 0;">
-                <div style="font-family: 'Yatra One', cursive; font-size: 13px; color: var(--gold-primary); text-transform: uppercase; margin-bottom: 6px;">॥ निमंत्रक ॥</div>
-                <div class="member-list">
-                    सुरेशचंद्र द. भावसार<br>
-                    सतीशचंद्र स. भावसार<br>
-                    जिज्ञासा स. भावसार<br>
-                    इशिता स. भावसार<br>
-                    दुर्वेश स. भावसार
-                </div>
-                <p style="font-size: 13px; color: var(--gold-light); margin-top: 10px; font-style: italic;">
-                    "या देवी सर्वभूतेषु मातृरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥"
-                </p>
-                <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 6px;">
-                    या मंगलमय प्रसंगी आपण कुटुंबपरिवारसह उपस्थित राहून आमच्या आनंदात सहभागी व्हावे, ही नम्र विनंती.
-                </p>
-            </div>
+        <div class="phones-row">
+          <a class="phone-link" href="tel:9422955824">📞 ९४२२९५५८२४</a>
+          <a class="phone-link" href="tel:8087084597">📞 ८०८७०८४५९७</a>
         </div>
+      </div>
 
-        <!-- Timeline -->
-        <div class="section">
-            <div class="section-title">॥ उत्सवाचा मंगल प्रवास ॥</div>
-            
-            <div class="timeline-wrapper">
-                <div class="timeline-row">
-                    <div class="timeline-box-item" style="text-align: right;">
-                        <div class="ev-name">आगम व स्वागत</div>
-                        <div class="ev-time">07:00 PM</div>
-                    </div>
-                    <div class="timeline-node-icon">🪔</div>
-                    <div style="width: 43%;"></div>
-                </div>
+      <!-- Venue Details -->
+      <div class="venue-card">
+        <div class="venue-title">📍 निवास / कार्यक्रम स्थळ :</div>
+        अवधूत पार्क, फ्लॅट नं. ०७, चौथा मजला, विकास कॉलनी, पार्कसाइड रेसिडेन्सी समोर, वडाळा पाथर्डी रोड, इंदिरा नगर ॲनेक्स, नाशिक - ०९.
+      </div>
 
-                <div class="timeline-row">
-                    <div style="width: 43%;"></div>
-                    <div class="timeline-node-icon">🌺</div>
-                    <div class="timeline-box-item" style="text-align: left;">
-                        <div class="ev-name">चक्र पूजन व हळदी कुंकू</div>
-                        <div class="ev-time">07:30 PM</div>
-                    </div>
-                </div>
-
-                <div class="timeline-row">
-                    <div class="timeline-box-item" style="text-align: right;">
-                        <div class="ev-name">महा आरती</div>
-                        <div class="ev-time">09:00 PM</div>
-                    </div>
-                    <div class="timeline-node-icon">🔔</div>
-                    <div style="width: 43%;"></div>
-                </div>
-
-                <div class="timeline-row" style="margin-bottom: 0;">
-                    <div style="width: 43%;"></div>
-                    <div class="timeline-node-icon">🍲</div>
-                    <div class="timeline-box-item" style="text-align: left;">
-                        <div class="ev-name">महाप्रसाद</div>
-                        <div class="ev-time">09:30 PM</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Venue -->
-        <div class="section" style="padding-top: 0;">
-            <div class="gold-card" style="margin: 0;">
-                <div class="section-title" style="margin-bottom: 6px;">📍 निवास स्थान व संपर्क</div>
-                <div class="venue-address">
-                    अवधूत पार्क फ्लॅट नं-७, विकास कॉलनी, पार्कसाइड रेसिडेन्सी समोर, इंदिरा नगर, नाशिक - ०९.
-                </div>
-                
-                <div class="contact-box">
-                    📞 संपर्क क्रमांक:<br>
-                    <a href="tel:9422955824">9422955824</a> / <a href="tel:8087084597">8087084597</a>
-                </div>
-
-                <a href="https://share.google/QFqc2sAqhDUC5RLZA" target="_blank" class="map-btn">गुगल मॅपवर पहा 🗺️</a>
-            </div>
-        </div>
-
-        <div class="footer-note">
-            Designed by Durvesh Bhavsar TechArtMedia
-        </div>
+      <!-- Action Button -->
+      <div class="btn-row">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Avdhut+Park+Vikas+Colony+Wadala+Pathardi+Road+Indira+Nagar+Nashik" target="_blank">
+          📍 गुगल मॅपवर दिशा पहा
+        </a>
+      </div>
 
     </div>
+  </div>
 
-    <audio id="bg-audio" loop>
-        <source src="https://actions.google.com/sounds/v1/ambiences/indian_market.ogg" type="audio/ogg">
-    </audio>
+  <script>
+    // Convert Western Digits to Devanagari
+    function toDevanagari(num) {
+      const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+      const str = String(num).padStart(2, '0');
+      return str.split('').map(d => devanagariDigits[parseInt(d, 10)] || d).join('');
+    }
 
-    <script>
-        function openInvitation() {
-            const overlay = document.getElementById('gate-overlay');
-            const container = document.getElementById('main-container');
-            const audioBtn = document.getElementById('audio-btn');
-            
-            overlay.classList.add('hidden');
-            container.classList.add('opened');
-            audioBtn.style.display = 'flex';
-            
-            const audio = document.getElementById('bg-audio');
-            audio.play().catch(e => console.log("Audio autoplay restricted:", e));
+    const targetDate = new Date('October 18, 2026 19:30:00 GMT+0530').getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('dBox').textContent = '००';
+        document.getElementById('hBox').textContent = '००';
+        document.getElementById('mBox').textContent = '००';
+        document.getElementById('sBox').textContent = '००';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('dBox').textContent = toDevanagari(days);
+      document.getElementById('hBox').textContent = toDevanagari(hours);
+      document.getElementById('mBox').textContent = toDevanagari(minutes);
+      document.getElementById('sBox').textContent = toDevanagari(seconds);
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Gentle Marigold Petals Animation
+    const canvas = document.getElementById('petalCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const petals = [];
+    const colors = ['#f49c12', '#e67e22', '#d35400', '#f1c40f'];
+
+    for (let i = 0; i < 26; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 5 + 3,
+        d: Math.random() * 1.5 + 0.6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10,
+        tiltAngle: 0,
+        tiltAngleInc: (Math.random() * 0.05) + 0.02
+      });
+    }
+
+    function drawPetals() {
+      ctx.clearRect(0, 0, width, height);
+      petals.forEach(p => {
+        ctx.beginPath();
+        ctx.lineWidth = p.r / 2;
+        ctx.strokeStyle = p.color;
+        ctx.fillStyle = p.color;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fill();
+
+        p.tiltAngle += p.tiltAngleInc;
+        p.y += p.d;
+        p.x += Math.sin(p.tiltAngle);
+
+        if (p.y > height) {
+          p.x = Math.random() * width;
+          p.y = -10;
         }
-
-        let isMuted = false;
-        function toggleAudio() {
-            const audio = document.getElementById('bg-audio');
-            const btn = document.getElementById('audio-btn');
-            isMuted = !isMuted;
-            audio.muted = isMuted;
-            btn.innerHTML = isMuted ? '🔇' : '🔊';
-        }
-
-        const targetDate = new Date("October 11, 2024 19:30:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) {
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("mins").innerText = "00";
-                document.getElementById("secs").innerText = "00";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("mins").innerText = String(mins).padStart(2, '0');
-            document.getElementById("secs").innerText = String(secs).padStart(2, '0');
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-    </script>
+      });
+      requestAnimationFrame(drawPetals);
+    }
+    drawPetals();
+  </script>
 </body>
 </html>
