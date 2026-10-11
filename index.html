@@ -536,7 +536,7 @@
         <div class="nimantrak-head">॥ निमंत्रक ॥</div>
         <div class="sub-head">(खानोरे) परिवार</div>
         <div class="names-list">
-          श्री. आप्पासाहेब सुरेशचंद्र भावसार<br>
+          श्री. अप्पासाहेब सुरेशचंद्र भावसार<br>
           श्री. सतीशचंद्र भावसार &nbsp;|&nbsp; सौ. जिज्ञासा भावसार<br>
           डॉ. इशिता भावसार &nbsp;|&nbsp; दुर्वेश भावसार
         </div>
@@ -594,6 +594,18 @@
         soundLabel.textContent = 'संगीत सुरू आहे';
       }).catch(() => {});
     });
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        soundIcon.textContent = '🔊';
+        soundLabel.textContent = 'संगीत सुरू आहे';
+      } else {
+        audio.pause();
+        soundIcon.textContent = '🔇';
+        soundLabel.textContent = 'संगीत बंद आहे';
+      }
+    }
 
     function toDevanagari(num) {
       const devanagariDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
